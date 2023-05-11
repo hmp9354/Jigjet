@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2508416669226033508}
   - component: {fileID: 9139951259863516737}
   - component: {fileID: 1978762448097450517}
-  - component: {fileID: 272444985}
   m_Layer: 0
   m_Name: Bullet
   m_TagString: bullet
@@ -30,6 +29,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.0365086, y: 2.4200945, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 0.369}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -45,6 +45,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -122,43 +123,3 @@ MonoBehaviour:
   Sflower: {fileID: 0}
   Sbomb: {fileID: 0}
   SwrongBomb: {fileID: 0}
---- !u!60 &272444985
-PolygonCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6061626818759839862}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.97, y: 1.48}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: -0.0003899671, y: 0.4030742}
-      - {x: -0.078578144, y: 0.29869533}
-      - {x: -0.09760164, y: 0.22572418}
-      - {x: -0.108579434, y: 0.10532689}
-      - {x: -0.13014932, y: 0.08548169}
-      - {x: -0.14817351, y: -0.32539043}
-      - {x: -0.10820965, y: -0.3451572}
-      - {x: -0.066263676, y: -0.36486262}
-      - {x: -0.0007287302, y: -0.3845428}
-      - {x: 0.11704232, y: -0.35357943}
-      - {x: 0.1448772, y: -0.32803372}
-      - {x: 0.1403104, y: 0.0774265}
-      - {x: 0.11379489, y: 0.099797145}
-      - {x: 0.10399326, y: 0.21466234}
-      - {x: 0.08643882, y: 0.28377783}

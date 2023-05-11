@@ -67,7 +67,7 @@ public class BlockManager : MonoBehaviour
         {
             for (int i = 0; i < GameObject.Find("massBlock").transform.childCount; i++)
             {
-                GameObject.Find("massBlock").transform.GetChild(i).Translate(0f, -0.6f, 0f);
+                GameObject.Find("massBlock").transform.GetChild(i).Translate(0f, -0.4f, 0f);
 
             }
             makeBlock(stageLevel);
@@ -181,16 +181,16 @@ public class BlockManager : MonoBehaviour
                 switch (numList[i])
                 {
                     case 1:
-                        tmpblock.transform.position = new Vector3(-2.4f, 5.3f, 0);
+                        tmpblock.transform.position = new Vector3(-1.5f, 3.6f, 0);
                         break;
                     case 2:
-                        tmpblock.transform.position = new Vector3(-0.8f, 5.3f, 0);
+                        tmpblock.transform.position = new Vector3(-0.5f, 3.6f, 0);
                         break;
                     case 3:
-                        tmpblock.transform.position = new Vector3(0.8f, 5.3f, 0);
+                        tmpblock.transform.position = new Vector3(0.5f, 3.6f, 0);
                         break;
                     case 4:
-                        tmpblock.transform.position = new Vector3(2.4f, 5.3f, 0);
+                        tmpblock.transform.position = new Vector3(1.5f, 3.6f, 0);
                         break;
                 }
             }

@@ -48,7 +48,7 @@ public class playerMove : MonoBehaviour
     {
         timeCheck = true;
         firstPosition = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x, Input.mousePosition.y));
-        firstPosition.y = -4;
+        firstPosition.y = -2.2f;
     }
 
     /* 비행기 위치 및 각도 조정 */
@@ -60,20 +60,20 @@ public class playerMove : MonoBehaviour
         // 시간이 1초 미만일때 많이(0.1만큼) 움직였는지 확인. 움직였다면 rotate를 그대로(true)
         if (dragTime < 1)
         {
-            objPosition.y = -4f;
+            objPosition.y = -2.2f;
             distance = objPosition.x - firstPosition.x;
 
-            if (transform.position.x + distance < -2.7)
+            if (transform.position.x + distance < -2)
             {
-                distance = -2.7f - transform.position.x;
+                distance = -2f - transform.position.x;
             }
-            else if (transform.position.x + distance > 2.7)
+            else if (transform.position.x + distance > 2)
             {
-                distance = 2.7f - transform.position.x;
+                distance = 2f - transform.position.x;
             }
-            transform.position = new Vector2(transform.position.x + distance, -4);
+            transform.position = new Vector2(transform.position.x + distance, -2.2f);
             firstPosition = objPosition;
-
+            
             if (Mathf.Abs(distance) > 0.1)
             {
                 rotate = false;
@@ -98,20 +98,20 @@ public class playerMove : MonoBehaviour
             }
             else
             {
-                objPosition.y = -4f;
+                objPosition.y = -2.2f;
 
                 distance = objPosition.x - firstPosition.x;
 
-                if (transform.position.x + distance < -2.7)
+                if (transform.position.x + distance < -2)
                 {
-                    distance = -2.7f - transform.position.x;
+                    distance = -2f - transform.position.x;
                 }
-                else if (transform.position.x + distance > 2.7)
+                else if (transform.position.x + distance > 2)
                 {
-                    distance = 2.7f - transform.position.x;
+                    distance = 2f - transform.position.x;
                 }
 
-                transform.position = new Vector2(transform.position.x + distance, -4);
+                transform.position = new Vector2(transform.position.x + distance, -2.2f);
                 firstPosition = objPosition;
             }
         }
