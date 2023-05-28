@@ -8,10 +8,7 @@ public class BlockManager : MonoBehaviour
     bool GameOver = false;
     bool Replay = false;
     public void setGameOver() { GameOver = true; }
-    public void setReplay(bool replay) { Replay = replay; }
-
-    /* 점수박스 */
-    public GameObject score;
+    public void setReplay(bool replay) { Replay = replay; }    
 
     /* 스테이지 박스 */
     public GameObject stage;

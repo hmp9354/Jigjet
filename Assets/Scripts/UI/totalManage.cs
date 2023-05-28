@@ -61,12 +61,12 @@ public class totalManage : MonoBehaviour
     {
         if (!selectHide)
         {
-            selectBullet.transform.Translate(400f, 0f, 0f);
+            selectBullet.transform.Translate(300f, 0f, 0f);
             selectHide = true;
         }
         else
         {
-            selectBullet.transform.Translate(-400f, 0f, 0f);
+            selectBullet.transform.Translate(-300f, 0f, 0f);
             selectHide = false;
         }
     }

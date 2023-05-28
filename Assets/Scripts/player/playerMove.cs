@@ -73,7 +73,7 @@ public class playerMove : MonoBehaviour
             }
             transform.position = new Vector2(transform.position.x + distance, -2.2f);
             firstPosition = objPosition;
-            
+
             if (Mathf.Abs(distance) > 0.1)
             {
                 rotate = false;

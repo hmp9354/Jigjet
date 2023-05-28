@@ -8,7 +8,10 @@ public class bullet : MonoBehaviour
     int selectNum = 0;
 
     /* 총알이 부딪힌 횟수 */
-    int bulletHealth = 10;
+    int bltHealth = 10;
+
+    /* 총알의 속도 */
+    int bltSpeed = 10;
 
     /* 총알이 날라가는 각도 */
     float tmpAngle;
@@ -62,13 +65,13 @@ public class bullet : MonoBehaviour
         }
         else if (selectNum == 2)
         {
-            bulletHealth = 5;
+            bltHealth = 5;
             flower = true;
             GameObject.Find("totalManager").GetComponent<totalManage>().selectBasic();
         }
         else if (selectNum == 3)
         {
-            bulletHealth = 2;
+            bltHealth = 2;
             bomb = true;
             GameObject.Find("totalManager").GetComponent<totalManage>().selectBasic();
         }
@@ -101,14 +104,14 @@ public class bullet : MonoBehaviour
             {
                 tmp = Instantiate(gameObject, firstPosition, firstRotation);
                 rigid = tmp.GetComponent<Rigidbody2D>();
-                rigid.AddForce(tmp.transform.up * 10, ForceMode2D.Impulse);
+                rigid.AddForce(tmp.transform.up * bltSpeed, ForceMode2D.Impulse);
                 madeBullet++;
             }
             else if (madeBullet == 1 && (waiting > 0.4f))
             {
                 tmp = Instantiate(gameObject, firstPosition, firstRotation);
                 rigid = tmp.GetComponent<Rigidbody2D>();
-                rigid.AddForce(tmp.transform.up * 10, ForceMode2D.Impulse);
+                rigid.AddForce(tmp.transform.up * bltSpeed, ForceMode2D.Impulse);
                 timeCheck = false;
                 waiting = 0f;
                 thTime = false;
@@ -125,7 +128,7 @@ public class bullet : MonoBehaviour
             float seBullet;
             float thBullet;
 
-            bulletHealth = 10; // 3갈래로 나뉘었기 때문에 다시 10번 튕길수 있도록 셋팅
+            bltHealth = 10; // 3갈래로 나뉘었기 때문에 다시 10번 튕길수 있도록 셋팅
             GameObject.Find("totalManager").GetComponent<totalManage>().selectBasic();
 
             Vector3 nowPosition = gameObject.transform.position;
@@ -140,7 +143,7 @@ public class bullet : MonoBehaviour
                 testRotation.z -= 360;
             }
             tmp = Instantiate(gameObject, nowPosition, Quaternion.Euler(0, 0, seBullet));
-            tmp.GetComponent<Rigidbody2D>().AddForce(tmp.transform.TransformDirection(Vector3.up) * 10, ForceMode2D.Impulse);
+            tmp.GetComponent<Rigidbody2D>().AddForce(tmp.transform.TransformDirection(Vector3.up) * bltSpeed, ForceMode2D.Impulse);
 
             /* 세 번째 bullet의 각도를 얻어옴 */
             thBullet = tmpAngle - 60;
@@ -149,7 +152,7 @@ public class bullet : MonoBehaviour
                 testRotation.z += 360;
             }
             tmp = Instantiate(gameObject, nowPosition, Quaternion.Euler(0, 0, thBullet));
-            tmp.GetComponent<Rigidbody2D>().AddForce(tmp.transform.TransformDirection(Vector3.up) * 10, ForceMode2D.Impulse);
+            tmp.GetComponent<Rigidbody2D>().AddForce(tmp.transform.TransformDirection(Vector3.up) * bltSpeed, ForceMode2D.Impulse);
 
             /* 첫번째 bullet의 각도를 얻어옴 */
             firstBullet = -180 + tmpAngle;
@@ -171,7 +174,7 @@ public class bullet : MonoBehaviour
             rigid = gameObject.GetComponent<Rigidbody2D>();
             rigid.velocity = Vector3.zero;
             rigid.GetComponent<CircleCollider2D>().radius = 5;
-            bulletHealth = 1;
+            bltHealth = 1;
         }
 
         if (playingSound)
@@ -188,11 +191,13 @@ public class bullet : MonoBehaviour
     /* 총알이 충돌하였을 때 */
     void OnTriggerEnter2D(Collider2D col)
     {
+        Debug.Log(bltHealth);
+        Debug.Log(col);
         Rigidbody2D bullet = gameObject.GetComponent<Rigidbody2D>();
 
         if (col.CompareTag("destroy"))
         {
-            bulletHealth = 0;
+            bltHealth = 0;
             Debug.Log("triggerEndter에서 오류처리");
         }
 
@@ -206,14 +211,14 @@ public class bullet : MonoBehaviour
                     aud.PlayOneShot(SwrongBomb);
                     playingSound = true;
                 }
-                bulletHealth = 1;
+                bltHealth = 1;
             }
             else
             {
                 AudioSource.PlayClipAtPoint(Sbasic, new Vector3(transform.position.x, 1f, -5f), 10f);
                 bullet.velocity = Vector3.zero;
 
-                bulletHealth--;
+                bltHealth--;
                 if (tmpAngle < 0 && tmpAngle > -180)
                 {
                     tmpAngle = -tmpAngle - 180;
@@ -224,7 +229,7 @@ public class bullet : MonoBehaviour
                 }
                 transform.rotation = Quaternion.Euler(0, 0, tmpAngle);
 
-                bullet.AddForce(transform.TransformDirection(Vector3.up) * 10, ForceMode2D.Impulse);
+                bullet.AddForce(transform.TransformDirection(Vector3.up) * bltSpeed, ForceMode2D.Impulse);
             }
         }
         else if (col.CompareTag("rlborder"))
@@ -237,25 +242,25 @@ public class bullet : MonoBehaviour
                     aud.PlayOneShot(SwrongBomb);
                     playingSound = true;
                 }
-                bulletHealth = 1;
+                bltHealth = 1;
             }
             else
             {
                 AudioSource.PlayClipAtPoint(Sbasic, new Vector3(transform.position.x, 1f, -5f), 10f);
                 bullet.velocity = Vector3.zero;
 
-                bulletHealth--;
+                bltHealth--;
 
                 tmpAngle = -tmpAngle;
 
                 transform.rotation = Quaternion.Euler(0, 0, tmpAngle);
 
-                bullet.AddForce(transform.TransformDirection(Vector3.up) * 10, ForceMode2D.Impulse);
+                bullet.AddForce(transform.TransformDirection(Vector3.up) * bltSpeed, ForceMode2D.Impulse);
             }
         }
 
         // 10번째 충돌이라면 오브젝트 삭제
-        if (bulletHealth == 0)
+        if (bltHealth <= 0)
         {
             if (GameObject.Find("massBullet").transform.childCount - 1 <= 3)
             {
