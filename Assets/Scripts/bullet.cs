@@ -10,6 +10,9 @@ public class bullet : MonoBehaviour
     /* ÃÑ¾ËÀÌ ºÎµúÈù È½¼ö */
     int bltHealth = 10;
 
+    /* ÃÑ¾Ë È°¼ºÈ­ */
+    bool active = false;
+
     /* ÃÑ¾ËÀÇ ¼Óµµ */
     int bltSpeed = 10;
 
@@ -195,12 +198,15 @@ public class bullet : MonoBehaviour
         Debug.Log(col);
         Rigidbody2D bullet = gameObject.GetComponent<Rigidbody2D>();
 
+        /*
         if (col.CompareTag("destroy"))
         {
             bltHealth = 0;
             Debug.Log("triggerEndter¿¡¼­ ¿À·ùÃ³¸®");
         }
+        */
 
+        if(!active) { return; }
         if (col.CompareTag("udborder"))
         {
             if (bomb)

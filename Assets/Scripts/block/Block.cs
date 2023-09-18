@@ -42,7 +42,7 @@ public class Block : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position.y <= -5.1)
+        if (transform.position.y <= -2.75)
         {
             Debug.Log("게임 오버");
             TotalManager.GetComponent<totalManage>().gameOver();
