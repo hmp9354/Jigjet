@@ -82,7 +82,7 @@ public class bullet : MonoBehaviour
     private void Update()
     {
         /* 정상적으로 처리되지 않은 미사일 */
-        if (transform.position.x > 4 || transform.position.x < -9 || transform.position.y > 10 || transform.position.y < -9)
+        if (transform.position.x > 5 || transform.position.x < -5 || transform.position.y > 8 || transform.position.y < -8)
         {
             Debug.Log("업데이트에서 오류 처리");
             if (GameObject.Find("massBullet").transform.childCount - 1 <= 3)
